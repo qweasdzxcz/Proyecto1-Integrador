@@ -1,19 +1,22 @@
-package Modelo;
+package DAO;
 
 import configuracion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import Modelo.Venta;
+import Modelo.Detalle_Venta;
 
-public class VentaDAO {
+public class VentaDaoImpl implements Interfaz.IVentaDAO{
     
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
     Conexion cn = new Conexion();
     int respuesta;
-    
+
+    @Override
     public int grabarVentas(Venta ve) {
         String sql = "insert into nueva_venta(id_empleado,monto) values (?,?)";
         try {
@@ -33,9 +36,9 @@ public class VentaDAO {
         }
         return respuesta;
     }
-    
-    public int ID_venta() {
 
+    @Override
+    public int ID_venta() {
         int idVenta = 0;
         String sql = "select max(id_venta) from nueva_venta";
         try {
@@ -49,9 +52,10 @@ public class VentaDAO {
         }
         return idVenta;
     }
-    
+
+    @Override
     public int grabarDetalles(Detalle_Venta det) {
-        String sql = "insert into detalles_ventas(id_venta,id_producto,cantidad,precioVenta) values (?,?,?,?)";
+                String sql = "insert into detalles_ventas(id_venta,id_producto,cantidad,precioVenta) values (?,?,?,?)";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -71,7 +75,8 @@ public class VentaDAO {
         }
         return respuesta;
     }
-    
+
+    @Override
     public boolean actualizarCantidad(int cantidad, int id) {
         String sql = "UPDATE producto set cantidad=? where id_producto=?";
         try {

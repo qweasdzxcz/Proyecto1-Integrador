@@ -1,19 +1,20 @@
 
-package Modelo;
+package DAO;
 
+import Modelo.Producto;
 import configuracion.Conexion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductoDAO {
+public class ProductoDaoImpl implements Interfaz.IProductoDAO{
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
     Conexion cn = new Conexion();
     int respuesta;
     
-    //CRUD
+    @Override
     public int agregarProducto(Producto pro) {
         String sql = "insert into producto(nombre,descripcion,cantidad,precio) values(?,?,?,?);";
         try {
@@ -31,7 +32,8 @@ public class ProductoDAO {
         }
         return respuesta;
     }
-    
+
+    @Override
     public List listarProducto() {
         String sql = "select * from producto";
         List<Producto> lista = new ArrayList<>();
@@ -55,7 +57,8 @@ public class ProductoDAO {
         }
         return lista;
     }
-    
+
+    @Override
     public boolean eliminarProducto(int id) {
         String sql = "delete from producto where id_producto = ?";
         try {
@@ -69,9 +72,10 @@ public class ProductoDAO {
             return false;
         }
     }
-    
-    public Producto buscar(int id){
-        Producto p=new Producto();
+
+    @Override
+    public Producto buscarProducto(int id) {
+         Producto p=new Producto();
         String sql = "select * from producto where id_producto=" + id;
         try {
             con = cn.getConnection();
@@ -89,7 +93,8 @@ public class ProductoDAO {
         }
         return p ;
     }
-    
+
+    @Override
     public int actualizar(Producto pr) {
         String sql = "update producto set nombre=?,descripcion=?,cantidad=?,precio=? where id_producto=?";
         try {

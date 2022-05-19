@@ -1,19 +1,21 @@
-package Modelo;
+package DAO;
 
 import configuracion.Conexion;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import Modelo.Empleado;
 
-public class EmpleadoDAO {
+public class EmpleadoDaoImpl implements Interfaz.IEmpleadoDAO {
 
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
     Conexion cn = new Conexion();
     int respuesta;
-    
-    //ACCEDER DESDE EL LOGIN
+
+    //INGRESAR AL SISTEMA
+    @Override
     public Empleado validar(String usuario, String contraseña) {
         Empleado emp = new Empleado();
         String sql = "SELECT * FROM empleado WHERE usuario=? AND contraseña=?";
@@ -37,8 +39,8 @@ public class EmpleadoDAO {
         }
         return emp;
     }
-    
     //CRUD
+    @Override
     public int agregarEmpleado(Empleado em) {
         String sql = "insert into empleado(nombre,dni,usuario,contraseña,celular,rol) values(?,?,?,?,?,?);";
         try {
@@ -57,8 +59,9 @@ public class EmpleadoDAO {
             System.out.println(e.toString());
         }
         return respuesta;
-    } 
-    
+    }
+
+    @Override
     public List listarEmpleado() {
         String sql = "select * from empleado";
         List<Empleado> lista = new ArrayList();
@@ -84,7 +87,8 @@ public class EmpleadoDAO {
         }
         return lista;
     }
-    
+
+    @Override
     public boolean eliminarEmpleado(int id) {
         String sql = "delete from empleado where id_empleado = ?";
         try {
@@ -98,7 +102,8 @@ public class EmpleadoDAO {
             return false;
         }
     }
-    
+
+    @Override
     public int actualizarEmpleado(Empleado em) {
         String sql = "update empleado set nombre=?,dni=?,usuario=?,contraseña=?,celular=?,rol=? where id_empleado=?";
         try {
@@ -122,9 +127,10 @@ public class EmpleadoDAO {
         }
         return respuesta;
     }
-    
+    //BUSQUEDA
+    @Override
     public String buscarNombre(String usuario) {
-        String nombre = null;
+         String nombre = null;
         String sql = "select nombre from empleado where usuario=?";
         try {
             con = cn.getConnection();
@@ -148,7 +154,8 @@ public class EmpleadoDAO {
         }
         return nombre;
     }
-    
+
+    @Override
     public String buscarRol(String rol) {
         String ROL = null;
         String sql = "select rol from empleado where usuario=?";
@@ -174,7 +181,8 @@ public class EmpleadoDAO {
         }
         return ROL;
     }
-    
+
+    @Override
     public String buscarId(String usuario) {
         String ID = null;
         String sql = "select id_empleado from empleado where usuario=?";
@@ -200,4 +208,5 @@ public class EmpleadoDAO {
         }
         return ID;
     }
+
 }

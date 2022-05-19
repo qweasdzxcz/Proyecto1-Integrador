@@ -1,13 +1,13 @@
 package vistas;
 
 import Modelo.Empleado;
-import Modelo.EmpleadoDAO;
+import DAO.EmpleadoDaoImpl;
 import javax.swing.FocusManager;
 
 public class Login extends javax.swing.JFrame {
 
     Empleado emp = new Empleado();
-    EmpleadoDAO empDAO = new EmpleadoDAO();
+    EmpleadoDaoImpl empDAO = new EmpleadoDaoImpl();
 
     public Login() {
         initComponents();
