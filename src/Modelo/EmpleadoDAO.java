@@ -174,5 +174,30 @@ public class EmpleadoDAO {
         }
         return ROL;
     }
-
+    
+    public String buscarId(String usuario) {
+        String ID = null;
+        String sql = "select id_empleado from empleado where usuario=?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, usuario);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                ID = rs.getString("id_empleado");
+            } else {
+                ID  = null;
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("Error" + e);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println("Error" + e);
+            }
+        }
+        return ID;
+    }
 }
