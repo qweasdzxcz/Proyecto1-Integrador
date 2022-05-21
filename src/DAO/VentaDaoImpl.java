@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import Modelo.Venta;
 import Modelo.Detalle_Venta;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VentaDaoImpl implements Interfaz.IVentaDAO{
     
@@ -90,5 +92,77 @@ public class VentaDaoImpl implements Interfaz.IVentaDAO{
             System.out.println(e.toString());
             return false;
         }
+    }
+
+    @Override
+    public String buscarFecha(int id) {
+        String FECHA = null;
+        String sql = "select fechaVenta from nueva_venta where id_venta=?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                FECHA = rs.getString("fechaVenta");
+            } else {
+                FECHA = null;
+            }
+            con.close();
+        } catch (Exception e) {
+            System.out.println("Error" + e);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println("Error" + e);
+            }
+        }
+        return FECHA;
+    }
+
+    @Override
+    public List listarVenta() {
+        String sql = "select * from nueva_venta";
+        List<Venta> lista = new ArrayList<>();
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Venta vent=new Venta();               
+                vent.setId_venta(rs.getInt("id_venta"));
+                vent.setId_empleado(rs.getInt("id_empleado"));
+                vent.setFecha(rs.getString("fechaVenta"));
+                vent.setMonto(rs.getDouble("monto"));
+                lista.add(vent);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return lista;
+    }
+
+    @Override
+    public List listarDetalles() {
+        String sql = "select * from detalles_ventas";
+        List<Detalle_Venta> lista = new ArrayList<>();
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Detalle_Venta detaVen=new Detalle_Venta();
+                detaVen.setId_detallesVenta(rs.getInt("id_detallesVenta"));
+                detaVen.setId_venta(rs.getInt("id_venta"));
+                detaVen.setId_producto(rs.getInt("id_producto"));
+                detaVen.setCantidad(rs.getInt("cantidad"));
+                detaVen.setPrecioVenta(rs.getDouble("precioVenta"));
+                lista.add(detaVen);
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        return lista;
     }
 }

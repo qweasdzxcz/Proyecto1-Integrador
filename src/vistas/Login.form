@@ -233,7 +233,7 @@
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\User\Documents\NetBeansProjects\INTEGRADOR\integrador_jframe2\src\main\java\img\Chosita burger.png"/>
+              <Image iconType="2" name="C:\Users\User\Desktop\chosita_burguer\src\imagenes\Logo.png"/>
             </Property>
           </Properties>
         </Component>

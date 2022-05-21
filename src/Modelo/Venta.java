@@ -5,14 +5,16 @@ public class Venta {
    
      private int id_venta;
     private int id_empleado;
+    private String fecha;
     private double monto;
     
     public Venta() {       
     }
-    
-    public Venta(int id_venta, int id_empleado, double monto) {
+
+    public Venta(int id_venta, int id_empleado, String fecha, double monto) {
         this.id_venta = id_venta;
         this.id_empleado = id_empleado;
+        this.fecha = fecha;
         this.monto = monto;
     }
 
@@ -32,6 +34,14 @@ public class Venta {
         this.id_empleado = id_empleado;
     }
 
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
     public double getMonto() {
         return monto;
     }
@@ -39,5 +49,6 @@ public class Venta {
     public void setMonto(double monto) {
         this.monto = monto;
     }
-   
+    
+       
 }
