@@ -37,9 +37,10 @@ public class ReportesExcel {
 
     public static void main(String arg[]) {
 //        reporteProductos();
-//        reporteVentas();
-        reporteEmpleados();
-        String fileName = "REPORTE DE EMPLEADOS";
+        //reporteVentas();
+        reporteDetalles();
+        //String fileName = "REPORTE DE VENTAS";
+        String fileName = "REPORTE DE DETALLES VENTAS";
         String home = System.getProperty("user.home");
         abrirReporte(home + "\\Downloads\\" + fileName + ".xlsx");
 
@@ -341,7 +342,7 @@ public class ReportesExcel {
             //FILA INICIO , FILA FIN , COLUM , ULTIMA COLUM
             sheet.addMergedRegion(new CellRangeAddress(9, 10, 1, 3));
             //CABECERA
-            String[] cabecera = new String[]{"ID VENTA", "ID EMPLEADO", "FECHA DE VENTA", "MONTO"};
+            String[] cabecera = new String[]{"ID VENTA", "ID EMPLEADO","CLIENTE", "FECHA DE VENTA", "MONTO"};
 
             //ESTILO CABECERA
             CellStyle headerStyle = book.createCellStyle();
@@ -383,7 +384,7 @@ public class ReportesExcel {
             datosEstilo.setBorderRight(BorderStyle.THIN);
             datosEstilo.setBorderBottom(BorderStyle.THIN);
 
-            String sql = "SELECT id_venta,id_empleado,fechaVenta,monto FROM nueva_venta";
+            String sql = "SELECT id_venta,id_empleado,cliente,fechaVenta,monto FROM nueva_venta";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 
@@ -407,6 +408,7 @@ public class ReportesExcel {
             sheet.autoSizeColumn(1);
             sheet.autoSizeColumn(2);
             sheet.autoSizeColumn(3);
+            sheet.autoSizeColumn(4);
 
             sheet.setZoom(120);
             //genera y ruta
@@ -467,7 +469,7 @@ public class ReportesExcel {
             //FILA INICIO , FILA FIN , COLUM , ULTIMA COLUM
             sheet.addMergedRegion(new CellRangeAddress(9, 10, 1, 3));
             //CABECERA
-            String[] cabecera = new String[]{"ID DETALLES ", "ID VENTA", "ID PRODUCTO", "CANTIDAD", "PRECIO DE VENTA"};
+            String[] cabecera = new String[]{"ID DETALLES ", "ID VENTA", "PRODUCTO", "CANTIDAD", "PRECIO DE VENTA","FECHA"};
 
             //ESTILO CABECERA
             CellStyle headerStyle = book.createCellStyle();
@@ -509,7 +511,7 @@ public class ReportesExcel {
             datosEstilo.setBorderRight(BorderStyle.THIN);
             datosEstilo.setBorderBottom(BorderStyle.THIN);
 
-            String sql = "SELECT id_detallesVenta,id_venta,id_producto,cantidad,precioVenta FROM detalles_ventas";
+            String sql = "SELECT id_detallesVentas,id_venta,nombre_producto,cantidad,precioVenta,fechaD FROM detalles_ventas";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
 
@@ -534,6 +536,7 @@ public class ReportesExcel {
             sheet.autoSizeColumn(2);
             sheet.autoSizeColumn(3);
             sheet.autoSizeColumn(4);
+            sheet.autoSizeColumn(6);
 
             sheet.setZoom(120);
             //genera y ruta

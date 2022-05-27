@@ -19,7 +19,7 @@ public class Detalle_VentaDAO {
     int respuesta;
     
     public int grabarDetalles(Detalle_Venta det) {
-                String sql = "insert into detalles_ventas(id_venta,nombre_producto,cantidad,precioVenta,fechaD) values (?,?,?,?,?)";
+                String sql = "insert into detalles_ventas(id_venta,nombre_producto,cantidad,precioVenta) values (?,?,?,?)";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -27,7 +27,6 @@ public class Detalle_VentaDAO {
             ps.setString(2, det.getNom_producto());
             ps.setInt(3, det.getCantidad());
             ps.setDouble(4, det.getPrecioVenta());
-            ps.setString(5, det.getFecha());
             ps.execute();
         } catch (SQLException e) {
             System.out.println(e.toString());

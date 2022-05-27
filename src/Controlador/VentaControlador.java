@@ -84,11 +84,12 @@ public class VentaControlador implements ActionListener {
                 //JOptionPane.showMessageDialog(null, "VENTA GENERADA");
 
                 generarVenta();
-                
+
                 generarDetalles();
-                //actualizarCantidad();
+                actualizarCantidad();
                 generarComprobante();
                 limpiarTablaNuevaV();
+                limpiarTxtNuevaVenta();
                 TotalPagar();
 
                 principal.limpiarTablaBuscar();
@@ -132,14 +133,8 @@ public class VentaControlador implements ActionListener {
     }
 
     public void limpiarTxtNuevaVenta() {
-        codigoProductoVenta.setText("");
-        lblNombre.setText("");
-        lblDescripcion.setText("");
         lblCantidad.setText("");
-        lblStock.setText("");
-        lblPrecio.setText("");
         lblCliente.setText("");
-        //codigoProductoVenta.requestFocus();
     }
 
     public void TotalPagar() {
@@ -240,8 +235,8 @@ public class VentaControlador implements ActionListener {
 
     private void generarVenta() {
         int empleado = Integer.parseInt(empDAO.buscarId(usuarioActivo.getText()));
-        String cli = lblCliente.getText();
         double monto = totalPagar;
+        String cli=lblCliente.getText();
         venta.setId_empleado(empleado);
         venta.setCliente(cli);
         venta.setMonto(monto);
@@ -250,9 +245,9 @@ public class VentaControlador implements ActionListener {
     }
 
     private void generarDetalles() {
-        String f = detalleDAO.buscarFecha(ventaDAO.ID_venta());
+        //String f = detalleDAO.buscarFecha(ventaDAO.ID_venta());
         for (int i = 0; i < tablaNuevaVenta.getRowCount(); i++) {
-            String nomPro = tablaNuevaVenta.getValueAt(i, 0).toString();
+            String nomPro = tablaNuevaVenta.getValueAt(i, 1).toString();
             int cantidad = Integer.parseInt(tablaNuevaVenta.getValueAt(i, 3).toString());
             double precioD = Double.parseDouble(tablaNuevaVenta.getValueAt(i, 4).toString());
             int idVenta = ventaDAO.ID_venta();
@@ -260,7 +255,7 @@ public class VentaControlador implements ActionListener {
             deta.setNom_producto(nomPro);
             deta.setCantidad(cantidad);
             deta.setPrecioVenta(precioD);
-            deta.setFecha(f);
+
             detalleDAO.grabarDetalles(deta);
         }
     }
@@ -319,8 +314,9 @@ public class VentaControlador implements ActionListener {
             String tel = "987654321";
             String ruc = "20756845242";
             String dir = "Lima, MZ. GATITAS LOTE 24 URBANIZACION GATOS";
+            String vacio="            ";
             Encabezado.addCell(" ");
-            Encabezado.addCell("\nRUC : " + ruc + "\n\nBOLETA DE VENTA " + "\n\n"+"      "+"ID : "+idVenta);
+            Encabezado.addCell("\nRUC : " + ruc + "\n\nBOLETA DE VENTA " + "\n\n" + vacio + "ID : " + idVenta);
             Encabezado.addCell(fecha);
 
             doc.add(Encabezado);
@@ -387,7 +383,7 @@ public class VentaControlador implements ActionListener {
 
             Paragraph total = new Paragraph();
             total.add(Chunk.NEWLINE);
-            total.add("TOTAL : " + lblTotal.getText());
+            total.add("TOTAL : "+"    " + lblTotal.getText());
             total.setAlignment(Element.ALIGN_RIGHT);
             doc.add(total);
 
