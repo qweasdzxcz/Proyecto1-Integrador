@@ -1,17 +1,22 @@
 package vistas;
 
+import Controlador.LoginControlador;
+import Controlador.ProductoControlador;
 import Modelo.Empleado;
-import DAO.EmpleadoDaoImpl;
+import Modelo.EmpleadoDAO;
+import Modelo.ProductoDAO;
 import javax.swing.FocusManager;
+import javax.swing.ImageIcon;
 
 public class Login extends javax.swing.JFrame {
 
     Empleado emp = new Empleado();
-    EmpleadoDaoImpl empDAO = new EmpleadoDaoImpl();
+    EmpleadoDAO empDAO = new EmpleadoDAO();
 
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/dos.png")).getImage());
     }
 
     public void validar() {
@@ -61,11 +66,11 @@ public class Login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jbCancelar = new javax.swing.JButton();
+        btn_salir = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         lblMensaje = new javax.swing.JLabel();
-        jbIngresar = new javax.swing.JButton();
+        btn_ingresar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -82,12 +87,12 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Sylfaen", 1, 16)); // NOI18N
         jLabel2.setText("CONTRASEÑA :");
 
-        jbCancelar.setBackground(new java.awt.Color(255, 153, 51));
-        jbCancelar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jbCancelar.setText("SALIR");
-        jbCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btn_salir.setBackground(new java.awt.Color(255, 153, 51));
+        btn_salir.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_salir.setText("SALIR");
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbCancelarActionPerformed(evt);
+                btn_salirActionPerformed(evt);
             }
         });
 
@@ -111,16 +116,16 @@ public class Login extends javax.swing.JFrame {
         lblMensaje.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lblMensaje.setForeground(new java.awt.Color(255, 51, 51));
 
-        jbIngresar.setBackground(new java.awt.Color(255, 153, 51));
-        jbIngresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jbIngresar.setText("INGRESAR");
-        jbIngresar.addActionListener(new java.awt.event.ActionListener() {
+        btn_ingresar.setBackground(new java.awt.Color(255, 153, 51));
+        btn_ingresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_ingresar.setText("INGRESAR");
+        btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbIngresarActionPerformed(evt);
+                btn_ingresarActionPerformed(evt);
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Desktop\\chosita_burguer\\src\\imagenes\\Logo.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -139,10 +144,10 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(168, 168, 168)
-                                    .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2)
-                                    .addComponent(jbIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(169, 169, 169)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -176,8 +181,8 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40)
@@ -199,42 +204,42 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbIngresarActionPerformed
-        validar();
-    }//GEN-LAST:event_jbIngresarActionPerformed
+    private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
+        //validar();
+    }//GEN-LAST:event_btn_ingresarActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
 
     }//GEN-LAST:event_txtPasswordActionPerformed
 
-    private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jbCancelarActionPerformed
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+        //System.exit(0);
+    }//GEN-LAST:event_btn_salirActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
+        
+        EmpleadoDAO empDAO=new EmpleadoDAO();
+        Login login=new Login();
+        
+        LoginControlador loginContr=new LoginControlador(login, empDAO);
+        login.setVisible(true);
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JButton btn_ingresar;
+    public static javax.swing.JButton btn_salir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton jbCancelar;
-    private javax.swing.JButton jbIngresar;
-    private javax.swing.JLabel lblMensaje;
+    public static javax.swing.JLabel lblMensaje;
     public static javax.swing.JPasswordField txtPassword;
     public static javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables

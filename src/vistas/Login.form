@@ -57,11 +57,11 @@
                                   <Component id="jLabel1" min="-2" pref="85" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
-                                      <Component id="jbCancelar" min="-2" pref="121" max="-2" attributes="0"/>
+                                      <Component id="btn_salir" min="-2" pref="121" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jbIngresar" min="-2" pref="109" max="-2" attributes="0"/>
+                                      <Component id="btn_ingresar" min="-2" pref="109" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="169" max="-2" attributes="0"/>
@@ -108,8 +108,8 @@
                           </Group>
                           <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jbIngresar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jbCancelar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="btn_ingresar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="btn_salir" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="lblMensaje" min="-2" pref="32" max="-2" attributes="0"/>
@@ -145,7 +145,7 @@
             <Property name="text" type="java.lang.String" value="CONTRASE&#xd1;A :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jbCancelar">
+        <Component class="javax.swing.JButton" name="btn_salir">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="99" red="ff" type="rgb"/>
@@ -156,8 +156,11 @@
             <Property name="text" type="java.lang.String" value="SALIR"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCancelarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_salirActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="txtUsuario">
           <Properties>
@@ -211,8 +214,11 @@
               <Color blue="33" green="33" red="ff" type="rgb"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="jbIngresar">
+        <Component class="javax.swing.JButton" name="btn_ingresar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="99" red="ff" type="rgb"/>
@@ -223,8 +229,11 @@
             <Property name="text" type="java.lang.String" value="INGRESAR"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbIngresarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ingresarActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
         </Component>
@@ -233,7 +242,7 @@
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\User\Desktop\chosita_burguer\src\imagenes\Logo.png"/>
+              <Image iconType="3" name="/imagenes/Logo.png"/>
             </Property>
           </Properties>
         </Component>

@@ -1,19 +1,20 @@
-
 package Modelo;
 
 public class Venta {
-   
-     private int id_venta;
+
+    private int id_venta;
     private int id_empleado;
+    private String cliente;
     private String fecha;
     private double monto;
-    
-    public Venta() {       
+
+    public Venta() {
     }
 
-    public Venta(int id_venta, int id_empleado, String fecha, double monto) {
+    public Venta(int id_venta, int id_empleado, String cliente, String fecha, double monto) {
         this.id_venta = id_venta;
         this.id_empleado = id_empleado;
+        this.cliente = cliente;
         this.fecha = fecha;
         this.monto = monto;
     }
@@ -34,6 +35,14 @@ public class Venta {
         this.id_empleado = id_empleado;
     }
 
+    public String getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
+    }
+
     public String getFecha() {
         return fecha;
     }
@@ -49,6 +58,5 @@ public class Venta {
     public void setMonto(double monto) {
         this.monto = monto;
     }
-    
-       
+
 }

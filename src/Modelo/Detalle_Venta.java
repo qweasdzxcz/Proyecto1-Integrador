@@ -5,19 +5,21 @@ public class Detalle_Venta {
     
      private int id_detallesVenta;
     private int id_venta;
-    private int id_producto;
+    private String nom_producto;
     private int cantidad;
     private double precioVenta;
+    private String fecha;
 
     public Detalle_Venta() {
     }
 
-    public Detalle_Venta(int id_detallesVenta, int id_venta, int id_producto, int cantidad, double precioVenta) {
+    public Detalle_Venta(int id_detallesVenta, int id_venta, String nom_producto, int cantidad, double precioVenta, String fecha) {
         this.id_detallesVenta = id_detallesVenta;
         this.id_venta = id_venta;
-        this.id_producto = id_producto;
+        this.nom_producto = nom_producto;
         this.cantidad = cantidad;
         this.precioVenta = precioVenta;
+        this.fecha = fecha;
     }
 
     public int getId_detallesVenta() {
@@ -36,12 +38,12 @@ public class Detalle_Venta {
         this.id_venta = id_venta;
     }
 
-    public int getId_producto() {
-        return id_producto;
+    public String getNom_producto() {
+        return nom_producto;
     }
 
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
+    public void setNom_producto(String nom_producto) {
+        this.nom_producto = nom_producto;
     }
 
     public int getCantidad() {
@@ -59,4 +61,15 @@ public class Detalle_Venta {
     public void setPrecioVenta(double precioVenta) {
         this.precioVenta = precioVenta;
     }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    
+      
 }
